@@ -1,6 +1,10 @@
 //bubble sort
 //bubble the bigeest number to end of array
 //example input [4,5,3,2,1]
+
+import { inputNumber } from "./Inputes.js";
+import { defaultCompairator, swap,strComp, timeTaken } from "./Utils.js";
+
 /**
  *  output [1,2,3,4,5]
  *
@@ -11,27 +15,7 @@
  * 5 > 2 swap
  * 5 > 1 swap
  */
-let input = ["LilBub", "Garfield", "Heathcliff", "Blue", "Grumpy"];
-let sortet = [1, 2, 3, 4, 5];
 
-function strComp(a, b) {
-  if (a < b) {
-    return -1;
-  } else if (a > b) {
-    return 1;
-  }
-  return 0;
-}
-function defaultCompairator(a, b) {
-  //Ascending order
-  if (a - b >= 1) {
-    return 1;
-  }
-  if (a - b < 1) {
-    return -1;
-  }
-  return 0;
-}
 function bubbleSort(input, Compairator) {
   if (!input) {
     return;
@@ -49,7 +33,7 @@ function bubbleSort(input, Compairator) {
 
     while (j < boundry) {
       if (Compairator(input[j], input[j + 1]) >= 1) {
-        [input[j], input[j + 1]] = [input[j + 1], input[j]];
+        swap(input, j, j + 1)
         noSwaped = false;
       }
       j++;
@@ -64,7 +48,12 @@ function bubbleSort(input, Compairator) {
 
   return input;
 }
+
+
+/**
+ * time complexity 
+ * o(n2)
+ */
 // console.log(input);
 // const res = ([input[0], input[1]] = [input[1], input[0]]);
-console.log(bubbleSort(input, strComp));
-// console.log(input);
+timeTaken(() => console.log(bubbleSort(inputNumber,defaultCompairator)))// console.log(input);
